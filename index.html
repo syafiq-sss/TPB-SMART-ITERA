@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TPB Smart - Bimbel Mahasiswa ITERA 2025</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body {
+        font-family: 'Poppins', sans-serif;
+        color: #1e293b;
+        background-color: #f1f5f9;
+        overflow-x: hidden;
+        background-image: url('https://cdn.pixabay.com/photo/2017/08/30/07/51/mathematics-2696234_1280.png');
+        background-repeat: repeat;
+        background-size: contain;
+        background-attachment: fixed;
+        opacity: 0.97;
+    }
+
+    /* HEADER */
+    header {
+        background: linear-gradient(120deg, #1e3a8a, #2563eb);
+        color: white;
+        text-align: center;
+        padding: 90px 20px;
+        position: relative;
+        overflow: hidden;
+    }
+    header::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('https://cdn.pixabay.com/photo/2016/11/21/15/54/student-1842453_1280.jpg') center/cover;
+        opacity: 0.15;
+        z-index: 0;
+    }
+    header h1, header p, header a {
+        position: relative;
+        z-index: 2;
+    }
+    header h1 {
+        font-size: 3rem;
+        margin-bottom: 15px;
+    }
+    header p {
+        font-size: 1.2rem;
+        margin-bottom: 25px;
+    }
+    header a {
+        background-color: #facc15;
+        color: #1e293b;
+        padding: 12px 25px;
+        border-radius: 10px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+    header a:hover {
+        background-color: #fde047;
+    }
+
+    /* SECTIONS */
+    section {
+        padding: 80px 20px;
+        max-width: 1100px;
+        margin: auto;
+        position: relative;
+    }
+    h2 {
+        text-align: center;
+        color: #1d4ed8;
+        margin-bottom: 40px;
+        font-size: 2rem;
+    }
+
+    /* ZIGZAG */
+    .zigzag {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 40px;
+        flex-wrap: wrap;
+        margin-bottom: 80px;
+    }
+    .zigzag img {
+        width: 400px;
+        border-radius: 15px;
+        box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+    }
+    .zigzag .text {
+        flex: 1;
+        min-width: 280px;
+    }
+    .zigzag:nth-child(even) {
+        flex-direction: row-reverse;
+    }
+    .zigzag .text h3 {
+        color: #1e40af;
+        margin-bottom: 10px;
+        font-size: 1.4rem;
+    }
+    .zigzag .text p {
+        line-height: 1.6;
+        color: #334155;
+    }
+
+    /* MENTOR */
+    #mentor {
+        background: linear-gradient(180deg, #eff6ff, #dbeafe);
+        border-radius: 20px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    }
+    .mentor-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 30px;
+        margin-top: 40px;
+    }
+    .mentor {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        text-align: center;
+        transition: 0.3s;
+    }
+    .mentor:hover {
+        transform: scale(1.03);
+    }
+    .mentor img {
+        width: 100%;
+        height: 230px;
+        object-fit: cover;
+    }
+    .mentor h4 {
+        margin: 15px 0 5px;
+        color: #1d4ed8;
+    }
+    .mentor p {
+        font-size: 0.9rem;
+        color: #475569;
+        margin-bottom: 15px;
+    }
+
+    /* PROGRAM */
+    #program {
+        background: url('https://cdn.pixabay.com/photo/2016/03/09/09/17/board-1246269_1280.jpg') center/cover;
+        border-radius: 20px;
+        color: rgb(0, 0, 0);
+        padding: 90px 20px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    .programs {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 25px;
+        margin-top: 40px;
+    }
+    .program-card {
+        position: relative;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(0, 0, 0, 0.3);
+        color: rgb(0, 0, 0);
+        padding: 25px;
+        border-radius: 20px;
+        width: 260px;
+        transition: transform 0.4s, background 0.4s;
+        cursor: pointer;
+        backdrop-filter: blur(5px);
+    }
+    .program-card:hover {
+        transform: translateY(-10px);
+        background: rgba(46, 126, 255, 0.25);
+    }
+    .program-card.book::before {
+    content: "📘";
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    font-size: 6rem;
+    opacity: 0.1;
+    }
+    .program-card.trophy::before {
+    content: "🏆";
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    font-size: 6rem;
+    opacity: 0.1;
+}
+
+    /* TRY OUT */
+    .tryout {
+        text-align: center;
+        background: url('https://cdn.pixabay.com/photo/2016/03/26/22/13/education-1283865_1280.jpg') no-repeat center/cover;
+        color: white;
+        border-radius: 20px;
+        padding: 60px 20px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        position: relative;
+    }
+    .tryout::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0,0,0,0.45);
+        border-radius: 20px;
+    }
+    .tryout * {
+        position: relative;
+        z-index: 1;
+    }
+    .tryout h3 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    /* FORM */
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        max-width: 500px;
+        margin: 50px auto 0;
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    input, select {
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #cbd5e1;
+        font-size: 1rem;
+    }
+    button {
+        background-color: #2563eb;
+        color: white;
+        padding: 12px;
+        border: none;
+        border-radius: 10px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    button:hover {
+        background-color: #1d4ed8;
+    }
+
+    footer {
+        text-align: center;
+        padding: 25px;
+        background-color: #1e293b;
+        color: white;
+        margin-top: 50px;
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>TPB Smart ITERA 2025</h1>
+    <p>Teman Belajar Terpercaya untuk Mahasiswa TPB ITERA</p>
+    <a href="#daftar">Daftar Sekarang</a>
+</header>
+
+<section id="kenapa">
+    <h2>Kenapa Pilih TPB Smart?</h2>
+    <div class="zigzag">
+        <div class="text">
+            <h3>Mentor Terbaik</h3>
+            <p>Dibimbing oleh mahasiswa berprestasi dengan IPK tinggi dan pengalaman mengajar. Setiap mentor memahami pola soal TPB ITERA dan tahu strategi belajar yang efektif.</p>
+        </div>
+        <img src="images/Gemini_Generated_Image_1ocqjr1ocqjr1ocq.png" alt="Mentor">
+    </div>
+    <div class="zigzag">
+        <div class="text">
+            <h3>Materi Terarah</h3>
+            <p>Modul disusun berdasarkan kurikulum TPB, fokus pada konsep fundamental agar kamu siap menghadapi soal dengan percaya diri.</p>
+        </div>
+        <img src="images/Gemini_Generated_Image_9n19af9n19af9n19.png" alt="Materi">
+    </div>
+    <div class="zigzag">
+        <div class="text">
+            <h3>Try Out dan Evaluasi</h3>
+            <p>Setiap peserta mendapatkan akses try out eksklusif dengan analisis performa, sehingga tahu bagian mana yang perlu diperbaiki sebelum UTS atau UAS.</p>
+        </div>
+        <img src="images/Gemini_Generated_Image_cwdtaucwdtaucwdt.png" alt="Try Out">
+    </div>
+</section>
+
+<section id="mentor">
+    <h2>Mentor Kami</h2>
+    <div class="mentor-grid">
+        <div class="mentor">
+            <img src="images/WhatsApp Image 2025-09-13 at 19.56.48_1b7cacc0.jpg" alt="Mentor 1">
+            <h4>Muhammad Syafiqul Falakh</h4>
+            <p>Peraih OZT Award 4.0 • Asisten DTD</p>
+        </div>
+        <div class="mentor">
+            <img src="images/Muhammad Roestika Andito_Kimia (1).jpg" alt="Mentor 2">
+            <h4>Muhammad Roestika Andito</h4>
+            <p>Perwakilan OnMIPA ITERA • Asprak Kimia</p>
+        </div>
+        <div class="mentor">
+            <img src="images/Gemini_Generated_Image_1ocqjr1ocqjr1ocq.png" alt="Mentor 3">
+            <h4>Rizky Ananda</h4>
+            <p>Finalis LKTI Nasional • Mentor Kimia Dasar dan Pengantar Rekayasa</p>
+        </div>
+    </div>
+</section>
+
+<section id="program">
+    <h2>Program Kami</h2>
+    <div class="programs">
+        <div class="program-card">📘 Reguler<br>2x per minggu, fokus pemahaman konsep dan latihan soal TPB.</div>
+        <div class="program-card">🚀 Intensif UTS/UAS<br>Program cepat menjelang ujian dengan review lengkap.</div>
+        <div class="program-card">🎯 Privat Online<br>Sesi eksklusif 1-on-1 via Zoom dengan mentor pilihanmu.</div>
+        <div class="program-card">🤝 Kelas Komunitas<br>Diskusi kelompok, belajar bareng, dan sharing pengalaman.</div>
+    </div>
+</section>
+
+<section class="tryout">
+    <h3>Ikuti Try Out Gratis!</h3>
+    <p>Uji kemampuanmu sebelum ujian sebenarnya dan dapatkan feedback langsung dari mentor ahli.</p>
+</section>
+
+<section id="daftar">
+    <h2>Daftar Sekarang</h2>
+    <form onsubmit="kirimWA(); return false;">
+        <input type="text" id="nama" placeholder="Nama Lengkap" required>
+        <input type="text" id="wa" placeholder="Nomor WhatsApp" required>
+        <select id="matkul" required>
+            <option value="">Pilih Mata Kuliah</option>
+            <option>Matematika Dasar</option>
+            <option>Fisika Dasar</option>
+            <option>Kimia Dasar</option>
+            <option>Pengantar Rekayasa</option>
+            <option>Statistika</option>
+        </select>
+        <button type="submit">Kirim via WhatsApp</button>
+    </form>
+</section>
+
+<footer>
+    <p>© 2025 TPB Smart | Bimbel Mahasiswa ITERA 2025</p>
+</footer>
+
+<script>
+function kirimWA() {
+    const nama = document.getElementById("nama").value;
+    const wa = document.getElementById("wa").value;
+    const matkul = document.getElementById("matkul").value;
+    const admin = "6281234567890";
+    const pesan = `Halo TPB Smart!%0A%0ASaya ingin mendaftar bimbel.%0A` +
+                  `Nama: ${nama}%0ANomor WA: ${wa}%0AMata Kuliah: ${matkul}%0A%0AKampus: ITERA%0AAngkatan: 2025`;
+    window.open(`https://wa.me/${admin}?text=${pesan}`, "_blank");
+}
+</script>
+
+</body>
+</html>
