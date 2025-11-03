@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Try Out TPB — Matdas / Fisdas / Kimdas</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Meta for nicer mobile behavior -->
+  <meta name="description" content="Try Out TPB - Matematika Dasar, Fisika Dasar, Kimia Dasar. Timer 60 menit, pembahasan setelah submit, hasil dapat diunduh." />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <!-- Simple inline SVG book/academic logo -->
+        <svg class="logo" width="44" height="44" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path fill="#fff" d="M3 6a2 2 0 0 1 2-2h11v14H5a2 2 0 0 1-2-2z"></path>
+          <path fill="#cfe8ff" d="M20 4h-1v14h1a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1z"></path>
+        </svg>
+        <div>
+          <h1 class="site-title">TPB Smart — Try Out</h1>
+          <p class="site-sub">Matematika • Fisika • Kimia — 60 menit</p>
+        </div>
+      </div>
+
+      <nav class="top-actions" aria-label="Aksi">
+        <button id="btn-reset" class="btn ghost" title="Reset semua progress">Reset</button>
+        <button id="btn-export" class="btn ghost" title="Unduh hasil saat selesai">Export CSV</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" id="app" role="main">
+    <!-- SECTION: Select & Intro -->
+    <section id="select-section" class="panel active" aria-labelledby="select-title">
+      <h2 id="select-title">1. Pilih Mata Kuliah</h2>
+      <p class="lead">Pilih salah satu mata kuliah lalu klik <strong>Mulai Try Out</strong>. Waktu akan berjalan saat mulai.</p>
+
+      <div class="select-row">
+        <label for="subject" class="sr-only">Pilih Mata Kuliah</label>
+        <select id="subject" aria-label="Pilih mata kuliah">
+          <option value="">-- Pilih Mata Kuliah --</option>
+          <option value="math">Matematika Dasar</option>
+          <option value="phys">Fisika Dasar</option>
+          <option value="chem">Kimia Dasar</option>
+        </select>
+
+        <label for="numQuestions" class="sr-only">Jumlah Soal</label>
+        <select id="numQuestions" aria-label="Jumlah soal">
+          <option value="5">5 Soal</option>
+          <option value="10" selected>10 Soal</option>
+          <option value="12">12 Soal</option>
+        </select>
+
+        <div class="switch-row">
+          <label class="switch">
+            <input type="checkbox" id="toggleShuffle" checked />
+            <span class="slider"></span>
+          </label>
+          <span class="switch-label">Acak soal & pilihan</span>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="startBtn" class="btn primary" aria-controls="quiz-section">Mulai Try Out</button>
+        <button id="demoBtn" class="btn ghost">Contoh Soal Singkat</button>
+      </div>
+    </section>
+
+    <!-- SECTION: Quiz -->
+    <section id="quiz-section" class="panel" aria-labelledby="quiz-title">
+      <h2 id="quiz-title">2. Try Out</h2>
+
+      <!-- Timer area -->
+      <div class="timer-wrap" role="timer" aria-live="polite" aria-atomic="true">
+        <div id="timer-text" class="timer-text" title="Waktu tersisa">60:00</div>
+        <div id="timer-bar" class="timer-bar" aria-hidden="true">
+          <div id="timer-fill" class="timer-fill"></div>
+        </div>
+      </div>
+
+      <!-- Progress / navigation -->
+      <div class="progress-row" aria-hidden="false">
+        <div id="progress" class="progress"></div>
+        <div class="progress-meta">
+          <span id="qIndex">1</span>/<span id="qTotal">10</span>
+        </div>
+      </div>
+
+      <!-- Question card -->
+      <article id="question-card" class="card" aria-live="polite">
+        <h3 id="qText" class="question-text">Soal akan muncul di sini</h3>
+        <form id="answersForm" class="answers" role="radiogroup" aria-labelledby="qText"></form>
+      </article>
+
+      <!-- Controls -->
+      <div class="controls">
+        <button id="prevBtn" class="btn ghost" aria-label="Soal sebelumnya">Sebelumnya</button>
+        <button id="markBtn" class="btn ghost" title="Tandai soal untuk direview">Tandai</button>
+        <div class="right-controls">
+          <button id="saveBtn" class="btn ghost" title="Simpan jawaban saat ini">Simpan</button>
+          <button id="nextBtn" class="btn primary">Selanjutnya</button>
+        </div>
+      </div>
+
+      <!-- Quick navigation thumbnails -->
+      <div id="thumbs" class="thumbs" aria-label="Navigasi Soal" role="navigation"></div>
+    </section>
+
+    <!-- SECTION: Result -->
+    <section id="result-section" class="panel" aria-labelledby="result-title">
+      <h2 id="result-title">3. Hasil & Pembahasan</h2>
+      <p class="lead">Ringkasan performa Anda. Unduh hasil jika perlu.</p>
+
+      <div class="result-summary">
+        <div>Skor: <b id="result-score">0</b> / <span id="result-total">0</span></div>
+        <div>Persentase: <b id="result-percent">0%</b></div>
+        <div>Waktu dipakai: <b id="result-time">00:00</b></div>
+      </div>
+
+      <hr />
+
+      <div id="explanations" class="explanations" aria-live="polite"></div>
+
+      <div class="actions">
+        <button id="retryBtn" class="btn primary">Ulangi Try Out</button>
+        <button id="exportBtn" class="btn ghost">Unduh Hasil (CSV)</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div>TPB SMART • ITERA — © <span id="year"></span></div>
+    <div class="footer-note">Desain edukatif — tampilan profesional untuk mahasiswa TPB</div>
+  </footer>
+
+  <!-- SCRIPT -->
+  <script src="script.js" defer></script>
+</body>
+</html>
