@@ -303,19 +303,19 @@
     <h2>Mentor Kami</h2>
     <div class="mentor-grid">
         <div class="mentor">
-            <img src="images/WhatsApp Image 2025-09-13 at 19.56.48_1b7cacc0.jpg" alt="Mentor 1">
+            <img src="images/syafiq.jpg" alt="Mentor 1">
             <h4>Muhammad Syafiqul Falakh</h4>
             <p>Peraih OZT Award 4.0 • Asisten DTD</p>
         </div>
         <div class="mentor">
-            <img src="images/Muhammad Roestika Andito_Kimia (1).jpg" alt="Mentor 2">
+            <img src="images/dito.jpg" alt="Mentor 2">
             <h4>Muhammad Roestika Andito</h4>
             <p>Perwakilan OnMIPA ITERA • Asprak Kimia</p>
         </div>
         <div class="mentor">
-            <img src="images/Gemini_Generated_Image_1ocqjr1ocqjr1ocq.png" alt="Mentor 3">
-            <h4>Rizky Ananda</h4>
-            <p>Finalis LKTI Nasional • Mentor Kimia Dasar dan Pengantar Rekayasa</p>
+            <img src="images/abi.jpg" alt="Mentor 3">
+            <h4>Devan Rizky Abinaya</h4>
+            <p>pentutor fisdas elektro 25 • juara 2 OSN Provinsi bidang Astronomi</p>
         </div>
     </div>
 </section>
@@ -325,7 +325,7 @@
     <div class="programs">
         <div class="program-card">📘 Reguler<br>2x per minggu, fokus pemahaman konsep dan latihan soal TPB.</div>
         <div class="program-card">🚀 Intensif UTS/UAS<br>Program cepat menjelang ujian dengan review lengkap.</div>
-        <div class="program-card">🎯 Privat Online<br>Sesi eksklusif 1-on-1 via Zoom dengan mentor pilihanmu.</div>
+        <div class="program-card">🎯 try out<br>sesi latihan soal berbasis online dengan pembahasan setelah soal.</div>
         <div class="program-card">🤝 Kelas Komunitas<br>Diskusi kelompok, belajar bareng, dan sharing pengalaman.</div>
     </div>
 </section>
@@ -339,12 +339,14 @@
     <h2>Daftar Sekarang</h2>
     <form onsubmit="kirimWA(); return false;">
         <input type="text" id="nama" placeholder="Nama Lengkap" required>
-        <input type="text" id="wa" placeholder="Nomor WhatsApp" required>
+        <input type="text" id="prodi" placeholder="Program Studi" required>
+        <input type="text" id="kendala" placeholder="Kendala Belajar">
         <select id="matkul" required>
             <option value="">Pilih Mata Kuliah</option>
             <option>Matematika Dasar</option>
             <option>Fisika Dasar</option>
             <option>Kimia Dasar</option>
+            <option>Bundling MAFIKI</option>
         </select>
         <button type="submit">Kirim via WhatsApp</button>
     </form>
@@ -357,11 +359,34 @@
 <script>
 function kirimWA() {
     const nama = document.getElementById("nama").value;
-    const wa = document.getElementById("wa").value;
+    const kendala = document.getElementById("kendala").value;
+    const prodi = document.getElementById("prodi").value;
     const matkul = document.getElementById("matkul").value;
-    const admin = "6288276204622";
-    const pesan = `Halo TPB Smart!%0A%0ASaya ingin mendaftar bimbel.%0A` +
-                  `Nama: ${nama}%0ANomor WA: ${wa}%0AMata Kuliah: ${matkul}%0A%0AKampus: ITERA%0AAngkatan: 2025`;
+
+    const adminMap = {
+        "Matematika Dasar": "6288276204622",
+        "Fisika Dasar": "62895616066314",
+        "Kimia Dasar": "6281288903766",
+        "Bundling MAFIKI": "6288276204622" 
+    };
+
+    // Jika bundling, tambahkan pesan khusus
+    let pesan = "";
+    if (matkul === "Bundling MAFIKI") {
+        pesan = `Halo TPB Smart!%0A%0ASaya ingin mendaftar *Bundling MAFIKI* (Matematika + Fisika + Kimia).%0A` +
+                `Nama: ${nama}%0ANomor WA: ${wa}%0AKendala: ${kendala}%0AProdi: 2025%0A%0A*Mohon info promo dan jadwal lengkapnya ya!*`;
+    } else {
+        pesan = `Halo TPB Smart!%0A%0ASaya ingin mendaftar bimbel.%0A` +
+                `Nama: ${nama}%0ANomor WA: ${wa}%0AMata Kuliah: ${matkul}%0A%0AKampus: ITERA%0AAngkatan: 2025`;
+    }
+
+    const admin = adminMap[matkul];
+    if (!admin) {
+        alert("Silakan pilih mata kuliah terlebih dahulu.");
+        return;
+    }
+
+    // Buka WhatsApp sesuai admin
     window.open(`https://wa.me/${admin}?text=${pesan}`, "_blank");
 }
 </script>
