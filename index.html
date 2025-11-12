@@ -337,57 +337,71 @@
 
 <section id="daftar">
     <h2>Daftar Sekarang</h2>
-    <form onsubmit="kirimWA(); return false;">
+    <form id="formDaftar">
         <input type="text" id="nama" placeholder="Nama Lengkap" required>
+        <input type="text" id="wa" placeholder="Nomor WhatsApp Aktif (contoh: 6281234567890)" required>
         <input type="text" id="prodi" placeholder="Program Studi" required>
         <input type="text" id="kendala" placeholder="Kendala Belajar">
         <select id="matkul" required>
             <option value="">Pilih Mata Kuliah</option>
-            <option>Matematika Dasar</option>
-            <option>Fisika Dasar</option>
-            <option>Kimia Dasar</option>
-            <option>Bundling MAFIKI</option>
+            <option value="Matematika Dasar">Matematika Dasar</option>
+            <option value="Fisika Dasar">Fisika Dasar</option>
+            <option value="Kimia Dasar">Kimia Dasar</option>
+            <option value="Bundling MAFIKI">Bundling MAFIKI</option>
         </select>
         <button type="submit">Kirim via WhatsApp</button>
     </form>
 </section>
+
 
 <footer>
     <p>© 2025 TPB Smart | Bimbel Mahasiswa ITERA 2025</p>
 </footer>
 
 <script>
-function kirimWA() {
-    const nama = document.getElementById("nama").value;
-    const wa = document.getElementById("wa").value;
-    const kendala = document.getElementById("kendala").value;
-    const prodi = document.getElementById("prodi").value;
+document.getElementById("formDaftar").addEventListener("submit", function(e) {
+    e.preventDefault(); // mencegah reload halaman
+
+    const nama = document.getElementById("nama").value.trim();
+    const wa = document.getElementById("wa").value.trim();
+    const prodi = document.getElementById("prodi").value.trim();
+    const kendala = document.getElementById("kendala").value.trim();
     const matkul = document.getElementById("matkul").value;
+
+    if (!nama || !wa || !prodi || !matkul) {
+        alert("Mohon lengkapi semua data terlebih dahulu!");
+        return;
+    }
 
     const adminMap = {
         "Matematika Dasar": "6288276204622",
         "Fisika Dasar": "62895616066314",
         "Kimia Dasar": "6281288903766",
-        "Bundling MAFIKI": "6288276204622" 
+        "Bundling MAFIKI": "6288276204622"
     };
 
-    if (!matkul) {
-        alert("Silakan pilih mata kuliah terlebih dahulu.");
+    const admin = adminMap[matkul];
+    if (!admin) {
+        alert("Silakan pilih mata kuliah yang tersedia.");
         return;
     }
 
     let pesan = "";
     if (matkul === "Bundling MAFIKI") {
-        pesan = `Halo TPB Smart!%0A%0ASaya ingin mendaftar *Bundling MAFIKI* (Matematika + Fisika + Kimia).%0A` +
-                `Nama: ${nama}%0ANomor WA: ${wa}%0AKendala: ${kendala}%0AProdi: ${prodi}%0A%0A*Mohon info promo dan jadwal lengkapnya ya!*`;
+        pesan = 
+        `Halo TPB Smart!%0A%0ASaya ingin mendaftar *Bundling MAFIKI* (Matematika + Fisika + Kimia).%0A` +
+        `Nama: ${nama}%0ANomor WA: ${wa}%0AProdi: ${prodi}%0AKendala: ${kendala || "-"}%0A%0A` +
+        `Mohon info promo dan jadwal lengkapnya ya!`;
     } else {
-        pesan = `Halo TPB Smart!%0A%0ASaya ingin mendaftar bimbel.%0A` +
-                `Nama: ${nama}%0ANomor WA: ${wa}%0AMata Kuliah: ${matkul}%0AProdi: ${prodi}%0A%0AKampus: ITERA%0AAngkatan: 2025`;
+        pesan = 
+        `Halo TPB Smart!%0A%0ASaya ingin mendaftar bimbel.%0A` +
+        `Nama: ${nama}%0ANomor WA: ${wa}%0AProdi: ${prodi}%0AMata Kuliah: ${matkul}%0A%0A` +
+        `Kampus: ITERA%0AAngkatan: 2025`;
     }
 
-    const admin = adminMap[matkul];
-    window.open(`https://wa.me/${admin}?text=${pesan}`, "_blank");
-}
+    const linkWA = `https://wa.me/${admin}?text=${pesan}`;
+    window.open(linkWA, "_blank");
+});
 </script>
 
 </body>
