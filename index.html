@@ -120,11 +120,17 @@
         box-shadow: 0 5px 15px rgba(0,0,0,0.08);
     }
     .mentor-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: 30px;
-        margin-top: 40px;
+     display: grid;
+     grid-template-columns: repeat(2, 1fr);
+     gap: 30px;
+     margin-top: 40px; 
     }
+    @media (min-width: 768px) {
+        .mentor-grid {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+    
     .mentor {
         background: white;
         border-radius: 15px;
@@ -305,18 +311,22 @@
         <div class="mentor">
             <img src="images/syafiq.jpg" alt="Mentor 1">
             <h4>Muhammad Syafiqul Falakh</h4>
-            <p>Peraih OZT Award 4.0 • Asisten DTD</p>
+            <p>Peraih OZT Award 4.0 • Asisten DTD • PIMNAS Ke-38 </p>
         </div>
         <div class="mentor">
             <img src="images/dito.jpg" alt="Mentor 2">
             <h4>Muhammad Roestika Andito</h4>
-            <p>Perwakilan OnMIPA ITERA • Asprak Kimia</p>
+            <p>Perwakilan OnMIPA Kimia ITERA • Asprak Kimia • KoSSMI 2023</p>
         </div>
         <div class="mentor">
             <img src="images/abi.jpg" alt="Mentor 3">
             <h4>Devan Rizky Abinaya</h4>
-            <p>pentutor fisdas elektro 25 • juara 2 OSN Provinsi bidang Astronomi</p>
+            <p>Pentutor Fisdas Elektro 25 • Juara 2 OSN Provinsi bidang Astronomi</p>
         </div>
+        <div class="mentor">
+            <img src="images/adam.jpg" alt="Mentor 4">
+            <h4>Adam Bertran Alexander Pelupesi</h4>
+            <p>Asisten DTD • Juara 3 Jamara</p>
     </div>
 </section>
 
@@ -347,6 +357,7 @@
             <option value="Matematika Dasar">Matematika Dasar</option>
             <option value="Fisika Dasar">Fisika Dasar</option>
             <option value="Kimia Dasar">Kimia Dasar</option>
+            <option value="Dasar Teknologi Digital">Dasar Teknologi Digital</option>
             <option value="Bundling MAFIKI">Bundling MAFIKI</option>
         </select>
         <button type="submit">Kirim via WhatsApp</button>
@@ -377,6 +388,7 @@ document.getElementById("formDaftar").addEventListener("submit", function(e) {
         "Matematika Dasar": "6288276204622",
         "Fisika Dasar": "62895616066314",
         "Kimia Dasar": "6281288903766",
+        "Dasar Teknologi Digital": "6288276204622",
         "Bundling MAFIKI": "6288276204622"
     };
 
