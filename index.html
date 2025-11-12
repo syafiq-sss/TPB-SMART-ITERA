@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+ <html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -359,6 +359,7 @@
 <script>
 function kirimWA() {
     const nama = document.getElementById("nama").value;
+    const wa = document.getElementById("wa").value;
     const kendala = document.getElementById("kendala").value;
     const prodi = document.getElementById("prodi").value;
     const matkul = document.getElementById("matkul").value;
@@ -370,23 +371,21 @@ function kirimWA() {
         "Bundling MAFIKI": "6288276204622" 
     };
 
-    // Jika bundling, tambahkan pesan khusus
-    let pesan = "";
-    if (matkul === "Bundling MAFIKI") {
-        pesan = `Halo TPB Smart!%0A%0ASaya ingin mendaftar *Bundling MAFIKI* (Matematika + Fisika + Kimia).%0A` +
-                `Nama: ${nama}%0ANomor WA: ${wa}%0AKendala: ${kendala}%0AProdi: 2025%0A%0A*Mohon info promo dan jadwal lengkapnya ya!*`;
-    } else {
-        pesan = `Halo TPB Smart!%0A%0ASaya ingin mendaftar bimbel.%0A` +
-                `Nama: ${nama}%0ANomor WA: ${wa}%0AMata Kuliah: ${matkul}%0A%0AKampus: ITERA%0AAngkatan: 2025`;
-    }
-
-    const admin = adminMap[matkul];
-    if (!admin) {
+    if (!matkul) {
         alert("Silakan pilih mata kuliah terlebih dahulu.");
         return;
     }
 
-    // Buka WhatsApp sesuai admin
+    let pesan = "";
+    if (matkul === "Bundling MAFIKI") {
+        pesan = `Halo TPB Smart!%0A%0ASaya ingin mendaftar *Bundling MAFIKI* (Matematika + Fisika + Kimia).%0A` +
+                `Nama: ${nama}%0ANomor WA: ${wa}%0AKendala: ${kendala}%0AProdi: ${prodi}%0A%0A*Mohon info promo dan jadwal lengkapnya ya!*`;
+    } else {
+        pesan = `Halo TPB Smart!%0A%0ASaya ingin mendaftar bimbel.%0A` +
+                `Nama: ${nama}%0ANomor WA: ${wa}%0AMata Kuliah: ${matkul}%0AProdi: ${prodi}%0A%0AKampus: ITERA%0AAngkatan: 2025`;
+    }
+
+    const admin = adminMap[matkul];
     window.open(`https://wa.me/${admin}?text=${pesan}`, "_blank");
 }
 </script>
