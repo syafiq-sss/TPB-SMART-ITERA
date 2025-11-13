@@ -270,6 +270,125 @@
         color: white;
         margin-top: 50px;
     }
+    /* ==== RESPONSIVE DESIGN ==== */
+
+/* Tampilan untuk layar kecil (handphone) */
+@media (max-width: 768px) {
+
+    header {
+        padding: 60px 15px;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    header p {
+        font-size: 1rem;
+    }
+
+    header a {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    section {
+        padding: 50px 15px;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+        margin-bottom: 25px;
+    }
+
+    /* Zigzag section diubah jadi kolom vertikal */
+    .zigzag {
+        flex-direction: column !important;
+        text-align: center;
+    }
+
+    .zigzag img {
+        width: 100%;
+        max-width: 340px;
+        height: auto;
+        margin: 0 auto 20px;
+    }
+
+    .zigzag .text {
+        width: 100%;
+    }
+
+    /* Grid mentor jadi satu kolom */
+    .mentor-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .mentor img {
+        height: 200px;
+    }
+
+    /* Program cards disusun ke bawah */
+    .programs {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .program-card {
+        width: 100%;
+        max-width: 330px;
+        text-align: center;
+    }
+
+    /* Tryout section */
+    .tryout h3 {
+        font-size: 1.5rem;
+    }
+
+    .tryout p {
+        font-size: 1rem;
+    }
+
+    /* Form */
+    form {
+        width: 90%;
+        padding: 25px 20px;
+    }
+
+    input, select, button {
+        font-size: 0.95rem;
+    }
+
+    footer {
+        font-size: 0.85rem;
+        padding: 20px;
+    }
+}
+
+/* Tambahan untuk layar sangat kecil (≤480px) */
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    header p {
+        font-size: 0.9rem;
+    }
+
+    .mentor img {
+        height: 180px;
+    }
+
+    .program-card {
+        font-size: 0.95rem;
+        padding: 20px;
+    }
+
+    form {
+        width: 95%;
+    }
+}
+
 </style>
 </head>
 <body>
@@ -325,7 +444,7 @@
         </div>
         <div class="mentor">
             <img src="images/adam.jpg" alt="Mentor 4">
-            <h4>Adam Bertran Alexander Pelupesi</h4>
+            <h4>Adam Bertrand Alexander Pelupessy</h4>
             <p>Asisten DTD • Juara 3 Jamara</p>
     </div>
 </section>
@@ -388,7 +507,7 @@ document.getElementById("formDaftar").addEventListener("submit", function(e) {
         "Matematika Dasar": "6288276204622",
         "Fisika Dasar": "62895616066314",
         "Kimia Dasar": "6281288903766",
-        "Dasar Teknologi Digital": "6288276204622",
+        "Dasar Teknologi Digital": "6282289868742",
         "Bundling MAFIKI": "6288276204622"
     };
 
